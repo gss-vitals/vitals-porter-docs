@@ -55,11 +55,20 @@
 * 文件夾名稱 不可使用`+ : % ^ ' # ? $ [ ] { } , ; & ~ |`等特殊符號
 * 文件夾名稱不可超過255字元
 
+## 知識類型匯入規則
+* ESP已存在的知識類型：
+    * 相同的欄位名稱：更改
+    * 多出的欄位名稱：新增
+    * 不存在的欄位名稱：刪除
+* ESP不存在的知識類型：
+    * 新增知識類型與欄位資料
+
 ---
 
 ## 已知問題
 * 出於安全考量，Porter不支援匯入使用者角色或群組
-* Porter的討論目前不支援更新模式
+* Porter的討論不支援更新模式
+* Porter匯入文件的自動分類目前只會對附件的主檔分類，不會對欄位分類
 * 發生417 Expectation Failed 錯誤：修改GSS.Vitals.Porter.exe.config 增加下列設定，參考[Web Service出現HTTP狀態417:Expectation Failed](http://pramaire.pixnet.net/blog/post/21949681-web-service%E5%87%BA%E7%8F%BEhttp%E7%8B%80%E6%85%8B417%3Aexpectation-failed)
     ```xml
     <settings>
