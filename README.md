@@ -48,10 +48,36 @@
 * 檔名最大長度可參考ESP新增文件時，上傳檔案頁面上提示。
   ![uploadFileMaxLength.png](/img/uploadFileMaxLength.png)
 
-
-
+## Porter上傳文件規則
+* 檔案大小不可超過40Ｍ(可調整大小)
+* 檔案名稱不超過150字元
+* 檔案名稱 不可使用`+ : % ^ ' # ? $ [ ] { } , ; & ~ |`等特殊符號
+* 文件夾名稱 不可使用`+ : % ^ ' # ? $ [ ] { } , ; & ~ |`等特殊符號
+* 文件夾名稱不可超過255字元
 
 ---
 
 ## 已知問題
 * 出於安全考量，Porter不支援匯入使用者角色或群組
+* Porter的討論目前不支援更新模式
+* 發生417 Expectation Failed 錯誤：修改GSS.Vitals.Porter.exe.config 增加下列設定，參考[Web Service出現HTTP狀態417:Expectation Failed](http://pramaire.pixnet.net/blog/post/21949681-web-service%E5%87%BA%E7%8F%BEhttp%E7%8B%80%E6%85%8B417%3Aexpectation-failed)
+    ```xml
+    <settings>
+        <servicePointManager expect100Continue="false" />
+    </settings>
+    ```
+
+---
+
+## 操作問題排除：
+1. API驗證發生：「API金鑰驗證不正確或與來源IP不符」錯誤
+    * 解決方式：確認正確的API網址與API金鑰是否填寫正確。
+2. API驗證發生：「無法連接至遠端伺服器」錯誤
+    * 解決方式請檢查以下內容：
+    * Vitals ESP主機網路是否正常
+    * Vitals ESP主機是否有執行IIS Server
+    * 防火牆是否阻擋Vitals ESP主機的連線？
+    * 執行Porter電腦的網路是否正常
+    * 執行Porter電腦的防火牆是否阻擋對Vitals ESP主機的連線？
+3. 其他未說明的錯誤
+    * 可從**工具**選擇**開啟記錄檔**檢視記錄以查看詳細錯誤
